@@ -15,6 +15,18 @@ class OrdenService {
     return await Orden.findByIdAndUpdate(id, data, { new: true });
   }
 
+  async getAllOrdenes() {
+    return await Orden.find(); // Puedes añadir .populate() si necesitas traer los datos referenciados
+  }
+
+  async getOrdenesPorUsuario(userId) {
+    try {
+      return await Orden.find({ usuario: userId }); // Asegúrate que 'usuario' sea el campo correcto
+    } catch (err) {
+      throw new Error('Error al obtener las órdenes: ' + err.message);
+    }
+  }
+
   async deleteOrden(id) {
     return await Orden.findByIdAndDelete(id);
   }

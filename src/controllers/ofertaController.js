@@ -1,4 +1,6 @@
+const Oferta = require('../models/Oferta');
 const ofertaService = require('../services/ofertaService');
+
 
 class OfertaController {
   async createOferta(req, res) {
@@ -24,7 +26,8 @@ class OfertaController {
 
   async getAllOfertas(req, res) {
     try {
-      const ofertas = await ofertaService.getAllOfertas();
+      const ofertas = await Oferta.find().populate("producto");
+      console.log("Ofertas desde la BD:", ofertas); 
       res.json(ofertas);
     } catch (err) {
       res.status(500).json({ error: err.message });
@@ -37,11 +40,14 @@ class OfertaController {
       if (!oferta) {
         return res.status(404).json({ error: 'Oferta no encontrada' });
       }
+      console.log("Oferta actualizada:", oferta);
       res.json(oferta);
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
   }
+  
+  
 
   async deleteOferta(req, res) {
     try {

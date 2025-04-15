@@ -29,7 +29,7 @@ app.use('/api/carritos', carritoRoutes);
 app.use('/api/envios', envioRoutes);
 app.use('/api/historial-compras', historialCompraRoutes);
 app.use('/api/inventario', inventarioRoutes);
-app.use('/api/metodos-pago', metodoPagoRoutes);
+app.use('/api/metodos_pago', metodoPagoRoutes);
 app.use('/api/ofertas', ofertaRoutes);
 app.use('/api/ordenes', ordenRoutes);
 app.use('/api/productos', productoRoutes);

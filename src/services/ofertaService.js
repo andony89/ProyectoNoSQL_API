@@ -12,8 +12,12 @@ class OfertaService {
   }
 
   async updateOferta(id, data) {
-    return await Oferta.findByIdAndUpdate(id, data, { new: true });
-  }
+    const oferta = await Oferta.findByIdAndUpdate(id, data, { new: true });
+    if (!oferta) {
+      throw new Error('Oferta no encontrada');
+    }
+    return oferta;
+  }  
 
   async deleteOferta(id) {
     return await Oferta.findByIdAndDelete(id);
