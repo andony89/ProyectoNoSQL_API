@@ -7,8 +7,12 @@ class EnvioService {
     return envio;
   }
 
+  async getAllEnvios() {
+    return await Envio.find().populate('orden');
+  }
+
   async getEnvio(id) {
-    return await Envio.findById(id);
+    return await Envio.findById(id).populate('orden');
   }
 
   async updateEnvio(id, data) {
