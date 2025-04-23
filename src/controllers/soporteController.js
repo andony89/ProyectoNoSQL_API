@@ -77,6 +77,15 @@ async getSoporteId(req, res) {
       res.status(500).json({ error: err.message });
     }
   }
+
+  async getAllSoportesViejos(req, res) {
+    try {
+      const soportes = await soporteService.getAllSoportes();
+      res.json(soportes);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  }
 }
 
 module.exports = new SoporteController();

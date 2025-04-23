@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const OfertaController = require('../controllers/ofertaController');
 
+router.get('/proximas-a-vencer', OfertaController.getOfertasPorVencer);
 
 router.post('/', OfertaController.createOferta);
 

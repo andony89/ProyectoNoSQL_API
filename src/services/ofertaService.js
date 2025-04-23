@@ -22,6 +22,16 @@ class OfertaService {
   async deleteOferta(id) {
     return await Oferta.findByIdAndDelete(id);
   }
+
+  async getOfertasPorVencer() {
+    const hoy = new Date();
+    const enTresDias = new Date();
+    enTresDias.setDate(hoy.getDate() + 3);
+
+    return await Oferta.find({
+      fechaFin: { $gte: hoy, $lte: enTresDias }
+    }).populate('producto');
+  }
 }
 
 module.exports = new OfertaService();

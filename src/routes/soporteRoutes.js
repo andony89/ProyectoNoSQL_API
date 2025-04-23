@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const SoporteController = require('../controllers/soporteController');
 
+router.get('/viejos', SoporteController.getAllSoportesViejos);
 
 router.post('/', SoporteController.createSoporte);
 

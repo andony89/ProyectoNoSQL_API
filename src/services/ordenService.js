@@ -30,6 +30,12 @@ class OrdenService {
   async deleteOrden(id) {
     return await Orden.findByIdAndDelete(id);
   }
+
+  async getOrdenesPendientes() {
+    return await Orden.find({ estado: "pendiente" })
+                      .populate("usuario")
+                      .populate("productos.producto");
+  }
 }
 
 module.exports = new OrdenService();

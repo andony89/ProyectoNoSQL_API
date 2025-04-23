@@ -47,8 +47,6 @@ class OfertaController {
     }
   }
   
-  
-
   async deleteOferta(req, res) {
     try {
       const oferta = await ofertaService.deleteOferta(req.params.id);
@@ -60,6 +58,16 @@ class OfertaController {
       res.status(500).json({ error: err.message });
     }
   }
+
+  async getOfertasPorVencer(req, res) {
+    try {
+      const ofertas = await ofertaService.getOfertasPorVencer();
+      res.json(ofertas);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  }
+
 }
 
 module.exports = new OfertaController();

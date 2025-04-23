@@ -76,6 +76,15 @@ class OrdenController {
       res.status(500).json({ error: err.message });
     }
   }
+
+  async getOrdenesPendientes(req, res) {
+    try {
+      const ordenes = await ordenService.getOrdenesPendientes();
+      res.json(ordenes);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  }
 }
 
 module.exports = new OrdenController();

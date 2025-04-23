@@ -36,6 +36,12 @@ async getAllSoportes() {
   async deleteSoporte(id) {
     return await Soporte.findByIdAndDelete(id);
   }
+
+  async getAllSoportesViejos() {
+    return await Soporte.find()
+      .sort({ fechaCreacion: 1 }) 
+      .populate("usuario");
+  }
 }
 
 module.exports = new SoporteService();

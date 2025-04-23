@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const OrdenController = require('../controllers/ordenController');
 
+router.get('/pendientes', OrdenController.getOrdenesPendientes);
+
 router.post('/', OrdenController.createOrden);
 
 router.get('/', OrdenController.getAllOrdenes);
