@@ -5,9 +5,11 @@ const ProductoSchema = new mongoose.Schema({
   descripcion: { type: String },
   precio: { type: Number, required: true },
   stock: { type: Number, required: true },
-  categoria: { type: String },
+  categoria: { type: String,
+    enum: ["Herramientas","Bicicletas","Ropa","Accesorios","Repuestos"],required: true},
   proveedor: { type: mongoose.Schema.Types.ObjectId, ref: "Proveedor" },
   imagen: { type: String },
+  ultimaActualizacion: { type: Date, default: Date.now },
   fechaCreacion: { type: Date, default: Date.now }
 }, { collection: 'productos' });
 
