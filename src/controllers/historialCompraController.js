@@ -54,6 +54,27 @@ class HistorialCompraController {
       res.status(500).json({ error: err.message });
     }
   }
+
+  // Obtener historial por ID de usuario
+  async getHistorialPorUsuario(req, res) {
+    try {
+      const historial = await historialCompraService.getHistorialPorUsuario(req.params.usuarioId);
+      res.json(historial);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  }
+
+  //  Obtener historiales con más de una orden
+  async getHistorialesConMultiplesOrdenes(req, res) {
+    try {
+      const historiales = await historialCompraService.getHistorialesConMultiplesOrdenes();
+      res.json(historiales);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  }
 }
 
 module.exports = new HistorialCompraController();
+

@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 app.use('/api/usuarios', usuarioRoutes);
 app.use('/api/carritos', carritoRoutes);
 app.use('/api/envios', envioRoutes);
-app.use('/api/historial-compras', historialCompraRoutes);
+app.use('/api/historial_compras', historialCompraRoutes);
 app.use('/api/inventario', inventarioRoutes);
 app.use('/api/metodos_pago', metodoPagoRoutes);
 app.use('/api/ofertas', ofertaRoutes);
