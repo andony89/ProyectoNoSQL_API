@@ -2,9 +2,12 @@ const express = require('express');
 const router = express.Router();
 const HistorialCompraController = require('../controllers/historialCompraController');
 
-router.post('/historial_compras', HistorialCompraController.createHistorialCompra);
-router.get('/historial_compras/:id', HistorialCompraController.getHistorialCompra);
-router.put('/historial_compras/:id', HistorialCompraController.updateHistorialCompra);
-router.delete('/historial_compras/:id', HistorialCompraController.deleteHistorialCompra);
+router.post('/', HistorialCompraController.createHistorialCompra);
+router.get('/:id', HistorialCompraController.getHistorialCompra);
+router.put('/:id', HistorialCompraController.updateHistorialCompra);
+router.delete('/:id', HistorialCompraController.deleteHistorialCompra);
+router.get('/', HistorialCompraController.getAllHistorialCompras);
+router.get('/usuario/:usuarioId', HistorialCompraController.getHistorialPorUsuario);
+router.get('/multiples/ordenes', HistorialCompraController.getHistorialesConMultiplesOrdenes);
 
 module.exports = router;

@@ -54,6 +54,37 @@ class CarritoController {
       res.status(500).json({ error: err.message });
     }
   }
+  async getCarritoByUsuario(req, res) {
+    try {
+      const { usuarioId } = req.params;
+      const carritos = await carritoService.getCarritoByUsuario(usuarioId);
+      res.json(carritos);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  }
+  
+  // Obtener carrito de un usuario ordenado por precio
+  async getCarritoOrdenadoPorPrecio(req, res) {
+    try {
+      const { usuarioId } = req.params;
+      const carritos = await carritoService.getCarritoOrdenadoPorPrecio(usuarioId);
+      res.json(carritos);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  }
+  
+  //  Obtener carrito de un usuario ordenado por cantidad
+  async getCarritoOrdenadoPorCantidad(req, res) {
+    try {
+      const { usuarioId } = req.params;
+      const carritos = await carritoService.getCarritoOrdenadoPorCantidad(usuarioId);
+      res.json(carritos);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  }
 }
 
 module.exports = new CarritoController();

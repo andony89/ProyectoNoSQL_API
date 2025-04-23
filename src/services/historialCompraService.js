@@ -18,6 +18,17 @@ class HistorialCompraService {
   async deleteHistorialCompra(id) {
     return await HistorialCompra.findByIdAndDelete(id);
   }
+
+  //  Buscar historial por ID de usuario
+  async getHistorialPorUsuario(usuarioId) {
+    return await HistorialCompra.find({ usuario: usuarioId }).populate('ordenes');
+  }
+
+  //  Buscar historiales con más de una orden
+  async getHistorialesConMultiplesOrdenes() {
+    return await HistorialCompra.find({ "ordenes.1": { $exists: true } }).populate('ordenes');
+  }
 }
 
 module.exports = new HistorialCompraService();
+
