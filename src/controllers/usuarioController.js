@@ -1,7 +1,6 @@
 const usuarioService = require('../services/usuarioService');
 
 class UsuarioController {
-  // REGISTRO DE USUARIO
   async registrar(req, res) {
     try {
       const usuario = await usuarioService.createUsuario(req.body); 
@@ -11,7 +10,6 @@ class UsuarioController {
     }
   }
 
-  // LOGIN DE USUARIO
   async login(req, res) {
     try {
       const { email, password } = req.body;
@@ -22,7 +20,6 @@ class UsuarioController {
     }
   }
 
-  // OBTENER TODOS LOS USUARIOS (Solo para administradores)
   async getAllUsuarios(req, res) {
     try {
       const usuarios = await usuarioService.getAllUsuarios(); 
@@ -32,7 +29,6 @@ class UsuarioController {
     }
   }
 
-  // OBTENER UN USUARIO POR ID
   async getUsuario(req, res) {
     try {
       const usuario = await usuarioService.getUsuario(req.params.id);
@@ -45,7 +41,6 @@ class UsuarioController {
     }
   }
 
-  // ACTUALIZAR USUARIO
   async updateUsuario(req, res) {
     try {
       const usuario = await usuarioService.updateUsuario(req.params.id, req.body);
@@ -58,7 +53,6 @@ class UsuarioController {
     }
   }
 
-  // ELIMINAR USUARIO
   async deleteUsuario(req, res) {
     try {
       const usuario = await usuarioService.deleteUsuario(req.params.id);
@@ -70,6 +64,22 @@ class UsuarioController {
       res.status(500).json({ error: err.message });
     }
   }
+  
+  async getUsuariosPorRol(req, res) {
+    const { rol } = req.params;
+    try {
+      const usuarios = await usuarioService.getUsuariosPorRol(rol);
+      if (usuarios.length === 0) {
+        return res.status(404).json({ error: 'No se encontraron usuarios con ese rol' });
+      }
+      res.json(usuarios);
+    } catch (err) {
+      const status = err.message === 'Rol no válido' ? 400 : 500;
+      res.status(status).json({ error: err.message });
+    }
+  }
+
+
 }
 
 module.exports = new UsuarioController();

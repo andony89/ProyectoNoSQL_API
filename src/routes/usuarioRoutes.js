@@ -14,4 +14,7 @@ router.get('/Usuarios/:id', verificarToken, usuarioController.getUsuario);
 router.put('/EditarUsuarios/:id', verificarToken, usuarioController.updateUsuario);
 
 router.delete('/BorrarUsuarios/:id', verificarToken, usuarioController.deleteUsuario);
+
+router.get('/Usuarios/rol/:rol', verificarToken, usuarioController.getUsuariosPorRol);
+
 module.exports = router;

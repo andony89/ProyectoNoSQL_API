@@ -53,7 +53,17 @@ class UsuarioService {
   async getAllUsuarios() {
     return await Usuario.find({}, '-password'); 
   
-}
+  }
+
+  async getUsuariosPorRol(role) {
+    const rolesPermitidos = ['admin', 'cliente'];
+    if (!rolesPermitidos.includes(role)) {
+      throw new Error('Rol no válido');
+    }
+    return await Usuario.find({ role }, '-password');
+  }
+
+
 }
 
 module.exports = new UsuarioService();
