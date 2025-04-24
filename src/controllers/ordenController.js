@@ -33,21 +33,16 @@ class OrdenController {
 
   async getOrdenesPorUsuario(req, res) {
     try {
-      // Obtener el userId de los parámetros de la URL
       const userId = req.params.userId; 
 
-      // Llamamos al servicio para obtener las órdenes del usuario
       const ordenes = await ordenService.getOrdenesPorUsuario(userId);
 
-      // Verificamos si se encontraron órdenes
       if (!ordenes || ordenes.length === 0) {
         return res.status(404).json({ error: 'No se encontraron órdenes para este usuario.' });
       }
 
-      // Si se encuentran órdenes, las enviamos en la respuesta
       res.json(ordenes);
     } catch (err) {
-      // En caso de error, enviamos el mensaje de error
       res.status(500).json({ error: err.message });
     }
   }

@@ -40,21 +40,20 @@ class MetodoPagoController {
 
   async getMetodosPagoPorUsuario(req, res) {
     try {
-      // Obtener el userId de los parámetros de la URL
+
       const userId = req.params.userId; 
   
-      // Llamamos al servicio para obtener los métodos de pago del usuario
+
       const metodosPago = await metodoPagoService.getMetodosPagoPorUsuario(userId);
       
-      // Verificamos si se encontraron métodos de pago
+  
       if (!metodosPago || metodosPago.length === 0) {
         return res.status(404).json({ error: 'No se encontraron métodos de pago para este usuario.' });
       }
       
-      // Si se encuentran métodos de pago, los enviamos en la respuesta
+
       res.json(metodosPago);
     } catch (err) {
-      // En caso de error, enviamos el mensaje de error
       res.status(500).json({ error: err.message });
     }
   }
